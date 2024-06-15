@@ -21,10 +21,13 @@ int main(void)
     Animation mapIdle = {"mapIdle", map, 0, 0, 0};
 
     SpriteSheet maceta = {"resources/images/macetaV1.png", 1, 1};
-    Animation macetaIdle = {"macetaIdle", maceta, 0, 0, 0};
+    Animation macetaIdle = {"macetaIdle", maceta, 0};
 
-    SpriteSheet muralla = {"resources/images/murallaSpriteSheetV1.png", 5, 1};
-    Animation murallaIdle = {"idle", muralla, 0, 0, 0};
+    TileMap floor = {"resources/images/floorTilesOffice.png", 5, 1};
+    floor.Load("resources/data/floor.data");
+
+    TileMap muralla = {"resources/images/murallaSpriteSheetV2.png", 7, 1};
+    muralla.Load("resources/data/map.data");
     
     Todo todo = {};
     Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
@@ -32,15 +35,17 @@ int main(void)
     while (!WindowShouldClose())
     {
         float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
-        if(IsKeyPressed(KEY_TAB)) todo.toogle  = (todo.toogle) ? 0 : 1;
+        if(IsKeyPressed(KEY_TAB)) todo.toggle  = (todo.toggle) ? 0 : 1;
         BeginTextureMode(target);
         
         ClearBackground(RAYWHITE);
         GM.Update();
-        mapIdle.Draw({0, 0}, 7.5);
-        macetaIdle.Draw({0, 0}, 7.5);
-        murallaIdle.Draw({100, 500}, 7.5);
-        if(todo.toogle) todo.Draw(font);
+        mapIdle.Draw({0, 0}, 8);
+        macetaIdle.Draw({0, 0}, 8);
+        floor.Draw(8);
+        muralla.Draw(8);
+
+        if(todo.toggle) todo.Draw(font);
 
         EndTextureMode();
 
