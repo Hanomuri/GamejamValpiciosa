@@ -50,8 +50,6 @@ int main(void)
         meatFloor.Draw(8);
         muralla.Draw(8);
 
-        if(todo.toggle) todo.Draw(font);
-
         EndTextureMode();
 
         BeginDrawing();
