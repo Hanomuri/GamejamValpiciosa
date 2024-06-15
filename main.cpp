@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "core.h"
+#include "dialogue.h"
 #include "raylib.h"
 #include "player.h"
 #include "todo.h"
@@ -33,6 +34,8 @@ int main(void)
   TileMap muralla = {"resources/images/murallaSpriteSheetV2.png", 7, 1};
   muralla.Load("resources/data/map.data");
   
+  DialogueManager dg("textochalla.data");
+
   Player player = {};
 
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
