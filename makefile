@@ -11,7 +11,6 @@ all:
 
 raylib: raylib.o
 	@echo COMPILING RAYLIB
-	@mkdir build
 	@$(C) ./raylib/raylib-5.0/src/*.o -o build/libraylib.dll -lwinmm -lgdi32 -shared
 
 raylib.o:
