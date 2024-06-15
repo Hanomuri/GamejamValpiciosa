@@ -26,6 +26,9 @@ int main(void)
     TileMap floor = {"resources/images/floorTilesOffice.png", 5, 1};
     floor.Load("resources/data/floor.data");
 
+    TileMap meatFloor = {"resources/images/meatFloorV2.png", 10, 1};
+    meatFloor.Load("resources/data/meatFloor.data");
+
     TileMap muralla = {"resources/images/murallaSpriteSheetV2.png", 7, 1};
     muralla.Load("resources/data/map.data");
     
@@ -43,6 +46,7 @@ int main(void)
         mapIdle.Draw({0, 0}, 8);
         macetaIdle.Draw({0, 0}, 8);
         floor.Draw(8);
+        meatFloor.Draw(8);
         muralla.Draw(8);
 
         if(todo.toggle) todo.Draw(font);
