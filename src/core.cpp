@@ -11,6 +11,7 @@ GameManager::GameManager(std::pair<ushort, ushort>* GR, ushort SR, bool IWB, con
   screenResolutions = GR;
   savedResolution = SR;
   isWindowBorderless = IWB;
+  SetConfigFlags(FLAG_MSAA_4X_HINT);
   InitWindow(screenResolutions[savedResolution].first, screenResolutions[savedResolution].second, TITLE);
   SetTargetFPS(60);
   ChangeDirectory(GetApplicationDirectory());
@@ -43,12 +44,12 @@ void GameManager::ToggleBorderless()
 void GameManager::Update()
 {
   if((GetWindowPosition().x != 1 || GetWindowPosition().y != 1) && isWindowBorderless) SetWindowPosition(0, 0);
-  if(IsKeyPressed(KEY_A) && !isWindowBorderless) SetResolution(3); 
-  if(IsKeyPressed(KEY_S) && !isWindowBorderless) SetResolution(2);
-  if(IsKeyPressed(KEY_D) && !isWindowBorderless) SetResolution(1);
-  if(IsKeyPressed(KEY_W) && !isWindowBorderless) SetResolution(0);
+  if(IsKeyPressed(KEY_F2) && !isWindowBorderless) SetResolution(3); 
+  if(IsKeyPressed(KEY_F3) && !isWindowBorderless) SetResolution(2);
+  if(IsKeyPressed(KEY_F4) && !isWindowBorderless) SetResolution(1);
+  if(IsKeyPressed(KEY_F1) && !isWindowBorderless) SetResolution(0);
   //Work Someway in a Borderless Mode
-  if(IsKeyPressed(KEY_F)) 
+  if(IsKeyPressed(KEY_F11)) 
     ToggleBorderless();
     
 }

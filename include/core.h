@@ -53,9 +53,9 @@ typedef struct Animation {
 typedef struct TileMap {
   typedef unsigned int ushort;
   ushort tilesX, tilesY;
+  SpriteSheet tileSheet;
   std::pair<ushort, ushort> tileDim;
   std::vector<int> tMap;
-  SpriteSheet tileSheet;
   std::vector<Animation> tiles;
 
   TileMap(char* file, ushort fX, ushort fY);

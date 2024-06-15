@@ -8,12 +8,12 @@ Entity::Entity()
 Entity::Entity(float x, float y)
 {
     //spawnea en la posición (x,y)
-    setTransform(x, y);
+    SetTransform(x, y);
 }
 void Entity::Move(float x, float y)
 {
-    position.x += x;
-    position.y += y;
+    m_transform.translation.x += x;
+    m_transform.translation.y += y;
 }
 void Entity::ToggleCollider()
 {
