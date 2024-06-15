@@ -1,1 +1,0 @@
-wine build/main.exe
