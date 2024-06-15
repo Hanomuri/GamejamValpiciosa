@@ -23,6 +23,7 @@ void Player::Update()
   if(IsKeyDown(KEY_S)) Move(0, 5);
   if(IsKeyDown(KEY_D)) Move(5, 0);
   if(todo.toggle) todo.Draw(m_camera);
-
+  Vector2 fixedPos = GetScreenToWorld2D({896, 412}, m_camera);
+  DrawRectangle(fixedPos.x, fixedPos.y, 128, 256, RED);
   SetCamera();
 }
