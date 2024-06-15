@@ -6,13 +6,11 @@ cflags=-ggdb -DPLATFORM_DESKTOP -DSUPPORT_FILEFORMAT_FLAC=1 -fPIC -c -I./externa
 raysrc=./*.c
 
 all:
-	@echo HOLYYY SHEEET
 	@cp -r resources/ build/
 	$(CC) $(cppflags) -o build/main.exe main.cpp $(cppsrc)
 
 raylib: raylib.o
 	@echo COMPILING RAYLIB
-	@mkdir build
 	@$(C) ./raylib/raylib-5.0/src/*.o -o build/libraylib.dll -lwinmm -lgdi32 -shared
 
 raylib.o:

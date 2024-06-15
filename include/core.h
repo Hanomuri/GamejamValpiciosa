@@ -31,14 +31,6 @@ typedef struct SpriteSheet {
   SpriteSheet(const char* nameFile, ushort fX, ushort fY);
 }SpriteSheet;
 
-typedef struct TileMap {
-  vector<Animation> tMap;
-  std::pair tileD;
-  
-
-  TileMap(int );
-}
-
 typedef struct Animation {
   typedef unsigned int ushort;
   char* animationName; 
