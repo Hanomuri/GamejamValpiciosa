@@ -24,13 +24,13 @@ int main(void)
   SpriteSheet maceta = {"resources/images/macetaV1.png", 1, 1};
   Animation macetaIdle = {"macetaIdle", maceta, 0};
 
-  TileMap floor = {"resources/images/floorTilesOffice.png", 5, 1};
+  TileMap floor = {"resources/images/floorTilesOffice.png", 13, 1};
   floor.Load("resources/data/floor.data");
 
   TileMap meatFloor = {"resources/images/meatFloorV2.png", 10, 1};
   meatFloor.Load("resources/data/meatFloor.data");
 
-  TileMap muralla = {"resources/images/murallaSpriteSheetV2.png", 7, 1};
+  TileMap muralla = {"resources/images/murallaSpriteSheetV2.png", 7, 2};
   muralla.Load("resources/data/map.data");
   
   Player player = {};
