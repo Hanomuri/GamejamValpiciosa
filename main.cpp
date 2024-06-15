@@ -2,6 +2,7 @@
 #include <string.h>
 #include "core.h"
 #include "raylib.h"
+#include "player.h"
 #include "todo.h"
 
 #define MAX(a, b) ((a)>(b)? (a) : (b))
@@ -15,7 +16,7 @@ int main(void)
     int gameScreenWidth = 1920; int gameScreenHeight = 1080;
 
     RenderTexture2D target = LoadRenderTexture(1920, 1080);
-    SetTextureFilter(target.texture, TEXTURE_FILTER_BILINEAR);
+    SetTextureFilter(target.texture, TEXTURE_FILTER_TRILINEAR);
     
     SpriteSheet map = {"resources/images/placeholderMap.png", 1, 1};
     Animation mapIdle = {"mapIdle", map, 0, 0, 0};
@@ -32,13 +33,13 @@ int main(void)
     TileMap muralla = {"resources/images/murallaSpriteSheetV2.png", 7, 1};
     muralla.Load("resources/data/map.data");
     
-    Todo todo = {};
+    Player player = {};
+
     Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
 
     while (!WindowShouldClose())
     {
         float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
-        if(IsKeyPressed(KEY_TAB)) todo.toggle  = (todo.toggle) ? 0 : 1;
         BeginTextureMode(target);
         
         ClearBackground(RAYWHITE);
