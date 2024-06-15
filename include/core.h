@@ -31,14 +31,6 @@ typedef struct SpriteSheet {
   SpriteSheet(const char* nameFile, ushort fX, ushort fY);
 }SpriteSheet;
 
-typedef struct TileMap {
-  vector<Animation> tMap;
-  std::pair tileD;
-  
-
-  TileMap(int );
-}
-
 typedef struct Animation {
   typedef unsigned int ushort;
   char* animationName; 
@@ -50,11 +42,26 @@ typedef struct Animation {
   float frameTime;
   bool triggerCondition = 0;
 
-  Animation(char* name, SpriteSheet spriteB, int initialF, int animationFs, float frameT);
+  Animation(char* name, SpriteSheet& spriteB, int initialF, int animationFs, float frameT);
+  Animation(char* name, SpriteSheet& spriteB, int frame);
+
   void Initialize();
   void Draw(Vector2 Position, float Scale);
   ushort FinishAnimation();
 }Animation;
+
+typedef struct TileMap {
+  typedef unsigned int ushort;
+  ushort tilesX, tilesY;
+  SpriteSheet tileSheet;
+  std::pair<ushort, ushort> tileDim;
+  std::vector<int> tMap;
+  std::vector<Animation> tiles;
+
+  TileMap(char* file, ushort fX, ushort fY);
+  void Load(char* file);
+  void Draw(float scale);
+}TileMap;
 
 typedef struct Animator {
   typedef unsigned int ushort;

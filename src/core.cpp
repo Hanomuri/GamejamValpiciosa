@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <string.h>
 #include "core.h"
@@ -10,6 +11,7 @@ GameManager::GameManager(std::pair<ushort, ushort>* GR, ushort SR, bool IWB, con
   screenResolutions = GR;
   savedResolution = SR;
   isWindowBorderless = IWB;
+  SetConfigFlags(FLAG_MSAA_4X_HINT);
   InitWindow(screenResolutions[savedResolution].first, screenResolutions[savedResolution].second, TITLE);
   SetTargetFPS(60);
   ChangeDirectory(GetApplicationDirectory());
@@ -42,12 +44,12 @@ void GameManager::ToggleBorderless()
 void GameManager::Update()
 {
   if((GetWindowPosition().x != 1 || GetWindowPosition().y != 1) && isWindowBorderless) SetWindowPosition(0, 0);
-  if(IsKeyPressed(KEY_A) && !isWindowBorderless) SetResolution(3); 
-  if(IsKeyPressed(KEY_S) && !isWindowBorderless) SetResolution(2);
-  if(IsKeyPressed(KEY_D) && !isWindowBorderless) SetResolution(1);
-  if(IsKeyPressed(KEY_W) && !isWindowBorderless) SetResolution(0);
+  if(IsKeyPressed(KEY_F2) && !isWindowBorderless) SetResolution(3); 
+  if(IsKeyPressed(KEY_F3) && !isWindowBorderless) SetResolution(2);
+  if(IsKeyPressed(KEY_F4) && !isWindowBorderless) SetResolution(1);
+  if(IsKeyPressed(KEY_F1) && !isWindowBorderless) SetResolution(0);
   //Work Someway in a Borderless Mode
-  if(IsKeyPressed(KEY_F)) 
+  if(IsKeyPressed(KEY_F11)) 
     ToggleBorderless();
     
 }
@@ -68,15 +70,26 @@ SpriteSheet::SpriteSheet(const char* nameFile, ushort fX, ushort fY)
 }
 
 //          --Name SpriteSheet InitialFrame AnimationFrames TimeperFrame--
-Animation::Animation(char* name, SpriteSheet spriteB, int initialF, int animationFs, float frameT)
+Animation::Animation(char* name, SpriteSheet& spriteB, int initialF, int animationFs, float frameT)
 {
   animationName = name;
-  this->sprite = new SpriteSheet(spriteB);
+  this->sprite = &spriteB;
   initialFrame = initialF;
   currentFrame = 0;
   animationFrames = animationFs;
   timer = 0.0f;
   frameTime = frameT;
+}
+
+Animation::Animation(char* name, SpriteSheet& spriteB, int frame)
+{
+  animationName = name;
+  this->sprite = &spriteB;
+  initialFrame = frame;
+  currentFrame = 0;
+  animationFrames = 0;
+  timer = 0.0f;
+  frameTime = 0.0f;
 }
 
 void Animation::Initialize()
@@ -113,6 +126,30 @@ void Animation::Draw(Vector2 position, float scale)
     Vector2{0, 0},
     0,
     RAYWHITE);
+}
+
+TileMap::TileMap(char* file, ushort fX, ushort fY)
+  : tileSheet(SpriteSheet{file, fX, fY}), tileDim({fX, fY})
+{
+  for(unsigned short k = 0; k < fX*fY; k++) {tiles.push_back(Animation{"tile", tileSheet, k});}
+}
+
+void TileMap::Load(char* file)
+{
+  std::ifstream input(file);
+  input>>tilesX>>tilesY;
+  for(unsigned int k = 0; k < tilesX*tilesY; k++) {
+    int til;
+    input>>til;
+    tMap.push_back(til);
+  }
+}
+
+void TileMap::Draw(float scale)
+{
+  for(unsigned int k = 0; k < tilesX*tilesY; k++) {
+    tiles[tMap[k]].Draw({tileSheet.frameWidth*(k%tilesX)*scale, tileSheet.frameHeight*(k/tilesX)*scale}, scale);
+  }
 }
 
 //        --AnimationArray  AnimationsSize--
