@@ -12,7 +12,7 @@ bool MainMenu::MenuMain() {
         Vector2 top = {(130),(370)};
         Vector2 down = {(130),(410)};
         Vector2 right = {(180),(390)};
-        ClearBackground((Color){ 4, 14, 42, 255 } );
+        //ClearBackground((Color){ 4, 14, 42, 255 } );
         mainMenuBackgroundIdle.Draw({0, 0}, 8);
         MenuMovement();
         UiEffect(top, down, right);
