@@ -21,6 +21,9 @@ int main(void)
   RenderTexture2D target = LoadRenderTexture(1920, 1080);
   SetTextureFilter(target.texture, TEXTURE_FILTER_TRILINEAR);
 
+  SetWindowIcon(LoadImage("resources/images/UI/icono.png"));
+  SetWindowTitle("Pico pal que lee :p");
+
   SpriteSheet maceta = {"resources/images/macetaV1.png", 1, 1};
   Animation macetaIdle = {"macetaIdle", maceta, 0};
 

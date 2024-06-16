@@ -63,6 +63,14 @@ typedef struct TileMap {
   void Draw(float scale);
 }TileMap;
 
+typedef struct TileCollider {
+  typedef unsigned int ushort;
+  ushort tilesX, tilesY;
+  std::vector<std::vector<bool>> colliderMap;
+
+  TileCollider(char* file);
+}TileCollider;
+
 typedef struct Animator {
   typedef unsigned int ushort;
   Animation* animationArray;

@@ -152,6 +152,22 @@ void TileMap::Draw(float scale)
   }
 }
 
+TileCollider::TileCollider(char* file)
+{
+  std::ifstream input(file);
+  input>>tilesX>>tilesY;
+  std::vector<bool> aux;
+  colliderMap.assign(tilesY, aux);
+  for(unsigned int k = 0; k < tilesY; k++) {
+    for(unsigned int j = 0; j < tilesX; j++) {
+      bool til;
+      input>>til;
+      colliderMap[k].push_back(til);
+    }
+  }
+  //std::cout<<"K: "<<k<<" J: "<<j<<" Nespresso\n";
+}
+
 //        --AnimationArray  AnimationsSize--
 Animator::Animator(Animation* animations, ushort animationsSize)
 {
