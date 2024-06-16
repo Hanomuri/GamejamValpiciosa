@@ -6,6 +6,7 @@
 #include "player.h"
 #include "todo.h"
 #include "menu.h"
+#include "MainMenu.h"
 
 #define MAX(a, b) ((a)>(b)? (a) : (b))
 #define MIN(a, b) ((a)<(b)? (a) : (b))
@@ -62,6 +63,7 @@ int main(void)
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
 
   Menu menu = Menu();
+  MainMenu mainMenu = MainMenu();
 
     //MUSIC
   InitAudioDevice();              // Initialize audio device
@@ -70,15 +72,21 @@ int main(void)
   float timePlayed = 0.0f;        // Time played normalized [0.0f..1.0f]
 
   while (!WindowShouldClose())
-  {
+  { 
     if(IsKeyPressed(KEY_P)) {if(!menu.MenuMain()) {return 0;}}
+    //if(!mainMenu.MenuMain()) {return 0;}
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
 
     // Update
     //----------------------------------------------------------------------------------
+<<<<<<< HEAD
     std::cout << "danger level: " << player.dangerLevel << std::endl;
     if(player.dangerLevel == 0)
+=======
+    //std::cout << "danger level: " << player.dangerLevel << std::endl;
+    if(player.dangerLevel != previousDangeLevel)
+>>>>>>> 497e658bac03ad99bcb81319e2a7f301df23b8e2
     {
         //Visuals
         floor0.Draw(8);
@@ -146,16 +154,21 @@ int main(void)
 
     if (timePlayed > 1.0f) timePlayed = 1.0f;   // Make sure time played is no longer than music
 
-
     BeginMode2D(player.m_camera);
     ClearBackground(RAYWHITE);
     GM.Update();
     //mapIdle.Draw({0, 0}, 8);
     //macetaIdle.Draw({0, 0}, 8);
+<<<<<<< HEAD
     dg.Render("jefe", 0);
+=======
+    floor.Draw(8);
+    meatFloor.Draw(8);
+    muralla.Draw(8);
+    //dg.Render("jefe", 0);
+>>>>>>> 497e658bac03ad99bcb81319e2a7f301df23b8e2
     player.Update();
     EndMode2D();
-
     EndTextureMode();
     BeginDrawing();
         ClearBackground(BLACK);
