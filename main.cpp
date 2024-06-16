@@ -5,6 +5,7 @@
 #include "raylib.h"
 #include "player.h"
 #include "todo.h"
+#include "menu.h"
 
 #define MAX(a, b) ((a)>(b)? (a) : (b))
 #define MIN(a, b) ((a)<(b)? (a) : (b))
@@ -18,9 +19,6 @@ int main(void)
 
   RenderTexture2D target = LoadRenderTexture(1920, 1080);
   SetTextureFilter(target.texture, TEXTURE_FILTER_TRILINEAR);
-  
-  SpriteSheet map = {"resources/images/placeholderMap.png", 1, 1};
-  Animation mapIdle = {"mapIdle", map, 0, 0, 0};
 
   SpriteSheet maceta = {"resources/images/macetaV1.png", 1, 1};
   Animation macetaIdle = {"macetaIdle", maceta, 0};
@@ -37,11 +35,18 @@ int main(void)
   DialogueManager dg("textochalla.data");
 
   Player player = {};
+<<<<<<< HEAD
 
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
 
+  Menu menu = Menu();
+
+=======
+  
+>>>>>>> 209a66d287608089fc37e28bf9eb0a784b7c10cc
   while (!WindowShouldClose())
   {
+    if(IsKeyPressed(KEY_P)) {if(!menu.MenuMain()) {return 0;}}
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
     
