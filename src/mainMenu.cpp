@@ -1,4 +1,5 @@
 #include "mainMenu.h"
+#include <iostream>
 
 MainMenu::MainMenu() {
     exitFlag = true;
