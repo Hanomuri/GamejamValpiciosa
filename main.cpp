@@ -18,9 +18,6 @@ int main(void)
 
   RenderTexture2D target = LoadRenderTexture(1920, 1080);
   SetTextureFilter(target.texture, TEXTURE_FILTER_TRILINEAR);
-  
-  SpriteSheet map = {"resources/images/placeholderMap.png", 1, 1};
-  Animation mapIdle = {"mapIdle", map, 0, 0, 0};
 
   SpriteSheet maceta = {"resources/images/macetaV1.png", 1, 1};
   Animation macetaIdle = {"macetaIdle", maceta, 0};
@@ -37,9 +34,7 @@ int main(void)
   DialogueManager dg("textochalla.data");
 
   Player player = {};
-
-  Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
-
+  
   while (!WindowShouldClose())
   {
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
