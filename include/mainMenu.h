@@ -1,13 +1,11 @@
 #include "raylib.h"
-#include "core.h"
 
 class MainMenu {
 private:
     int point;
     int intConfirm = 10;
     bool exitFlag;
-    SpriteSheet mainMenuBackground = {"/resources/images/UI/LogoConOuroboros.png", 1 ,1};
-    Animation mainMenuBackgroundIdle = {"mainMenuBackgroundIdle", mainMenuBackground, 0};
+    Texture2D mainMenuBackground = LoadTextureFromImage(LoadImage("/resources/images/UI/LogoConOuroboros.png"));
 public:
     MainMenu();
     ~MainMenu();

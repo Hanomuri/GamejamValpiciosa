@@ -74,7 +74,7 @@ int main(void)
   while (!WindowShouldClose())
   { 
     if(IsKeyPressed(KEY_P)) {if(!menu.MenuMain()) {return 0;}}
-    //if(!mainMenu.MenuMain()) {return 0;}
+    if(!mainMenu.MenuMain()) {return 0;}
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
 
