@@ -79,7 +79,7 @@ int main(void)
     BeginTextureMode(target);
 
     BeginMode2D(player.m_camera);
-    ClearBackground(RAYWHITE);
+    ClearBackground((Color){ 4, 14, 42, 255});
     GM.Update();
     // Update
     //----------------------------------------------------------------------------------
@@ -94,9 +94,11 @@ int main(void)
         //Sound
         if(player.dangerLevel != previousDangeLevel)
         {
-        UnloadMusicStream(music);   // Unload music stream buffers from RAM
-        music = LoadMusicStream("resources/music/ZeroDanger.wav");
-        PlayMusicStream(music);
+            float moment = GetMusicTimePlayed(music);
+            PauseMusicStream(music);
+            music = LoadMusicStream("resources/music/ZeroDanger.wav");
+            PlayMusicStream(music);
+            SeekMusicStream(music, moment);
         //collisions
         //player.collider = {"resources/data/collisionMap0.data"};
 
@@ -112,11 +114,13 @@ int main(void)
         //Sound
         if(player.dangerLevel != previousDangeLevel)
         {
-        UnloadMusicStream(music);   // Unload music stream buffers from RAM
-        music = LoadMusicStream("resources/music/OneDanger.wav");
-        PlayMusicStream(music);
-        //collisions
-        //player.collider = {"resources/data/collisionMap1.data"};
+            float moment = GetMusicTimePlayed(music);
+            PauseMusicStream(music);
+            music = LoadMusicStream("resources/music/OneDanger.wav");
+            PlayMusicStream(music);
+            SeekMusicStream(music, moment);
+            //collisions
+            //player.collider = {"resources/data/collisionMap1.data"};
 
         }
     }
@@ -130,9 +134,11 @@ int main(void)
         //Sound
         if(player.dangerLevel != previousDangeLevel)
         {
-        UnloadMusicStream(music);   // Unload music stream buffers from RAM
-        music = LoadMusicStream("resources/music/TwoDanger.wav");
-        PlayMusicStream(music);
+            float moment = GetMusicTimePlayed(music);
+            PauseMusicStream(music);
+            music = LoadMusicStream("resources/music/TwoDanger.wav");
+            PlayMusicStream(music);
+            SeekMusicStream(music, moment);
         //collisions
         //player.collider = {"resources/data/collisionMap2.data"};
 
@@ -148,9 +154,11 @@ int main(void)
         //Sound
         if(player.dangerLevel != previousDangeLevel)
         {
-        UnloadMusicStream(music);   // Unload music stream buffers from RAM
-        music = LoadMusicStream("resources/music/ThreeDanger.wav");
-        PlayMusicStream(music);
+            float moment = GetMusicTimePlayed(music);
+            PauseMusicStream(music);
+            music = LoadMusicStream("resources/music/TwoDanger.wav");
+            PlayMusicStream(music);
+            SeekMusicStream(music, moment);
         //collisions
         //player.collider = {"resources/data/collisionMap3.data"};
         }
@@ -165,6 +173,9 @@ int main(void)
     //mapIdle.Draw({0, 0}, 8);
     //macetaIdle.Draw({0, 0}, 8);
     //dg.Render("jefe", 0);
+    
+    //ESTO AL FINAL
+    DrawRectangle(0, 0, gameScreenWidth, gameScreenHeight, (Color){ 4, 14, 42, 25*previousDangeLevel});
     player.Update();
     EndMode2D();
     EndTextureMode();
