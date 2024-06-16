@@ -48,10 +48,12 @@ void Player::SetCamera()
 
 void Player::Update()
 {
-
-  // DEBUG MUSIC
-  if(IsKeyPressed(KEY_O)) dangerLevel++;
-  if(IsKeyPressed(KEY_L)) dangerLevel--;
+    if(IsKeyPressed(KEY_H)) TogglePills();
+  if(hasPills)
+  {
+    if(IsKeyPressed(KEY_Q)) dangerLevel++;
+    if(IsKeyPressed(KEY_E)) dangerLevel--;
+  }
 
   if(IsKeyPressed(KEY_TAB)) todo.toggle  = (todo.toggle) ? 0 : 1;
   int tX, tY;

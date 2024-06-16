@@ -28,32 +28,32 @@ int main(void)
   SpriteSheet maceta = {"resources/images/macetaV1.png", 1, 1};
   Animation macetaIdle = {"macetaIdle", maceta, 0};
 
-  TileMap floor0 = {"resources/images/floorTilesOffice.png", 13, 1};
-  TileMap floor1 = {"resources/images/floorTilesOffice.png", 13, 1};
-  TileMap floor2 = {"resources/images/floorTilesOffice.png", 13, 1};
-  TileMap floor3 = {"resources/images/floorTilesOffice.png", 13, 1};
-  floor0.Load("resources/data/floor0.data");
-  floor1.Load("resources/data/floor1.data");
-  floor2.Load("resources/data/floor2.data");
-  floor3.Load("resources/data/floor3.data");
+  TileMap floor0 = {"resources/images/World/floorTilesOffice.png", 13, 1};
+  TileMap floor1 = {"resources/images/World/floorTilesOffice.png", 13, 1};
+  TileMap floor2 = {"resources/images/World/floorTilesOffice.png", 13, 1};
+  TileMap floor3 = {"resources/images/World/floorTilesOffice.png", 13, 1};
+  floor0.Load("resources/data/0/floor0.data");
+  floor1.Load("resources/data/1/floor1.data");
+  floor2.Load("resources/data/2/floor2.data");
+  floor3.Load("resources/data/3/floor3.data");
 
-  TileMap meatFloor0 = {"resources/images/meatFloorV2.png", 10, 1};
-  TileMap meatFloor1 = {"resources/images/meatFloorV2.png", 10, 1};
-  TileMap meatFloor2 = {"resources/images/meatFloorV2.png", 10, 1};
-  TileMap meatFloor3 = {"resources/images/meatFloorV2.png", 10, 1};
-  meatFloor0.Load("resources/data/meatFloor0.data");
-  meatFloor1.Load("resources/data/meatFloor1.data");
-  meatFloor2.Load("resources/data/meatFloor2.data");
-  meatFloor3.Load("resources/data/meatFloor3.data");
+  TileMap meatFloor0 = {"resources/images/World/meatFloorV2.png", 10, 1};
+  TileMap meatFloor1 = {"resources/images/World/meatFloorV2.png", 10, 1};
+  TileMap meatFloor2 = {"resources/images/World/meatFloorV2.png", 10, 1};
+  TileMap meatFloor3 = {"resources/images/World/meatFloorV2.png", 10, 1};
+  meatFloor0.Load("resources/data/0/meatFloor0.data");
+  meatFloor1.Load("resources/data/1/meatFloor1.data");
+  meatFloor2.Load("resources/data/2/meatFloor2.data");
+  meatFloor3.Load("resources/data/3/meatFloor3.data");
 
-  TileMap muralla0 = {"resources/images/murallaSpriteSheetV2.png", 7, 4};
-  TileMap muralla1 = {"resources/images/murallaSpriteSheetV2.png", 7, 4};
-  TileMap muralla2 = {"resources/images/murallaSpriteSheetV2.png", 7, 4};
-  TileMap muralla3 = {"resources/images/murallaSpriteSheetV2.png", 7, 4};
-  muralla0.Load("resources/data0/map.data");
-  muralla1.Load("resources/data1/map.data");
-  muralla2.Load("resources/data2/map.data");
-  muralla3.Load("resources/data3/map.data");
+  TileMap muralla0 = {"resources/images/World/murallaSpriteSheetV2.png", 7, 4};
+  TileMap muralla1 = {"resources/images/World/murallaSpriteSheetV2.png", 7, 4};
+  TileMap muralla2 = {"resources/images/World/murallaSpriteSheetV2.png", 7, 4};
+  TileMap muralla3 = {"resources/images/World/murallaSpriteSheetV2.png", 7, 4};
+  muralla0.Load("resources/data/0/map0.data");
+  muralla1.Load("resources/data/1/map1.data");
+  muralla2.Load("resources/data/2/map2.data");
+  muralla3.Load("resources/data/3/map3.data");
 
   Player player = {};
   int previousDangeLevel = player.dangerLevel;
@@ -78,15 +78,13 @@ int main(void)
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
 
+    BeginMode2D(player.m_camera);
+    ClearBackground(RAYWHITE);
+    GM.Update();
     // Update
     //----------------------------------------------------------------------------------
-<<<<<<< HEAD
     std::cout << "danger level: " << player.dangerLevel << std::endl;
     if(player.dangerLevel == 0)
-=======
-    //std::cout << "danger level: " << player.dangerLevel << std::endl;
-    if(player.dangerLevel != previousDangeLevel)
->>>>>>> 497e658bac03ad99bcb81319e2a7f301df23b8e2
     {
         //Visuals
         floor0.Draw(8);
@@ -99,6 +97,9 @@ int main(void)
         UnloadMusicStream(music);   // Unload music stream buffers from RAM
         music = LoadMusicStream("resources/music/ZeroDanger.wav");
         PlayMusicStream(music);
+        //collisions
+        //player.collider = {"resources/data/collisionMap0.data"};
+
         }
     }
     else if(player.dangerLevel == 1)
@@ -114,6 +115,9 @@ int main(void)
         UnloadMusicStream(music);   // Unload music stream buffers from RAM
         music = LoadMusicStream("resources/music/OneDanger.wav");
         PlayMusicStream(music);
+        //collisions
+        //player.collider = {"resources/data/collisionMap1.data"};
+
         }
     }
     else if(player.dangerLevel == 2)
@@ -129,6 +133,9 @@ int main(void)
         UnloadMusicStream(music);   // Unload music stream buffers from RAM
         music = LoadMusicStream("resources/music/TwoDanger.wav");
         PlayMusicStream(music);
+        //collisions
+        //player.collider = {"resources/data/collisionMap2.data"};
+
         }
     }
     else if(player.dangerLevel == 3)
@@ -144,29 +151,20 @@ int main(void)
         UnloadMusicStream(music);   // Unload music stream buffers from RAM
         music = LoadMusicStream("resources/music/ThreeDanger.wav");
         PlayMusicStream(music);
+        //collisions
+        //player.collider = {"resources/data/collisionMap3.data"};
         }
     }
     previousDangeLevel = player.dangerLevel;
     UpdateMusicStream(music);   // Update music buffer with new stream data
-
     // Get normalized time played for current music stream
     timePlayed = GetMusicTimePlayed(music)/GetMusicTimeLength(music);
-
     if (timePlayed > 1.0f) timePlayed = 1.0f;   // Make sure time played is no longer than music
 
-    BeginMode2D(player.m_camera);
-    ClearBackground(RAYWHITE);
-    GM.Update();
+
     //mapIdle.Draw({0, 0}, 8);
     //macetaIdle.Draw({0, 0}, 8);
-<<<<<<< HEAD
-    dg.Render("jefe", 0);
-=======
-    floor.Draw(8);
-    meatFloor.Draw(8);
-    muralla.Draw(8);
     //dg.Render("jefe", 0);
->>>>>>> 497e658bac03ad99bcb81319e2a7f301df23b8e2
     player.Update();
     EndMode2D();
     EndTextureMode();
