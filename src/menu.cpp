@@ -1,10 +1,8 @@
 #include "menu.h"
-#include <iostream>
 
 Menu::Menu() {
     font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
     exitFlag = true;
-    x = y = 0;
     }
 
 Menu::~Menu() {}
@@ -40,8 +38,6 @@ void Menu::MenuMovement() {
     if(IsKeyPressed(KEY_W) && point > 0) {point--;} // Agregar Efecto UI
 }
 
-void Menu::MenuNewGame() {}
-void Menu::MenuSettings() {}
 void Menu::MenuExit() {
     Vector2 top = {(360),(530)};
     Vector2 down = {(360),(570)};
