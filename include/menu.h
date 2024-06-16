@@ -3,7 +3,8 @@
 
 class Menu {
 private:
-    int point, intConfirm;
+    int point;
+    int intConfirm = 10;
     float x, y;
     const char* menuButton[4] = {"CONTINUE", "EXIT"};
     Font font;
@@ -14,7 +15,7 @@ public:
     Menu();
     ~Menu();
     void MenuMovement();
-    void UiEffect();
+    void UiEffect(Vector2& top, Vector2& down, Vector2& right);
     bool MenuMain();
     void MenuNewGame();
     void MenuSettings();

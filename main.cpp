@@ -35,15 +35,12 @@ int main(void)
   DialogueManager dg("textochalla.data");
 
   Player player = {};
-<<<<<<< HEAD
 
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
 
   Menu menu = Menu();
 
-=======
   
->>>>>>> 209a66d287608089fc37e28bf9eb0a784b7c10cc
   while (!WindowShouldClose())
   {
     if(IsKeyPressed(KEY_P)) {if(!menu.MenuMain()) {return 0;}}
@@ -53,7 +50,7 @@ int main(void)
     BeginMode2D(player.m_camera);
     ClearBackground(RAYWHITE);
     GM.Update();
-    mapIdle.Draw({0, 0}, 8);
+    //mapIdle.Draw({0, 0}, 8);
     macetaIdle.Draw({0, 0}, 8);
     floor.Draw(8);
     meatFloor.Draw(8);
