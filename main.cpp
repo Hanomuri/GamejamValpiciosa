@@ -34,10 +34,10 @@ int main(void)
 
   TileMap muralla = {"resources/images/murallaSpriteSheetV2.png", 7, 2};
   muralla.Load("resources/data/map.data");
-  
-  DialogueManager dg("textochalla.data");
 
   Player player = {};
+
+  DialogueManager dg("textochalla.data", &player.m_camera);
 
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
 
@@ -58,6 +58,7 @@ int main(void)
     floor.Draw(8);
     meatFloor.Draw(8);
     muralla.Draw(8);
+    dg.Render("jefe", 0);
     player.Update();
     EndMode2D();
 
