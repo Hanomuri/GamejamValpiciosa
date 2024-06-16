@@ -48,6 +48,11 @@ void Player::SetCamera()
 
 void Player::Update()
 {
+
+  // DEBUG MUSIC
+  if(IsKeyPressed(KEY_O)) dangerLevel++;
+  if(IsKeyPressed(KEY_L)) dangerLevel--;
+
   if(IsKeyPressed(KEY_TAB)) todo.toggle  = (todo.toggle) ? 0 : 1;
   int tX, tY;
   Vector3 pos = GetTransform()->translation;

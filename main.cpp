@@ -59,27 +59,32 @@ int main(void)
 
     // Update
     //----------------------------------------------------------------------------------
+    std::cout << "danger level: " << player.dangerLevel << std::endl;
     if(player.dangerLevel != previousDangeLevel)
     {
         if(player.dangerLevel == 0)
         {
             UnloadMusicStream(music);   // Unload music stream buffers from RAM
             music = LoadMusicStream("resources/music/ZeroDanger.wav");
+            PlayMusicStream(music);
         }
         else if(player.dangerLevel == 1)
         {
             UnloadMusicStream(music);   // Unload music stream buffers from RAM
             music = LoadMusicStream("resources/music/OneDanger.wav");
+            PlayMusicStream(music);
         }
         else if(player.dangerLevel == 2)
         {
             UnloadMusicStream(music);   // Unload music stream buffers from RAM
             music = LoadMusicStream("resources/music/TwoDanger.wav");
+            PlayMusicStream(music);
         }
         else if(player.dangerLevel == 3)
         {
             UnloadMusicStream(music);   // Unload music stream buffers from RAM
             music = LoadMusicStream("resources/music/ThreeDanger.wav");
+            PlayMusicStream(music);
         }
     }
     previousDangeLevel = player.dangerLevel;
