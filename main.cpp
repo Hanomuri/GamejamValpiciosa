@@ -14,6 +14,7 @@ std::pair<unsigned int, unsigned int> ScreenResolutions[] = {{720, 405}, {1280, 
 
 int main(void)
 {
+
   GameManager GM(ScreenResolutions, 3, 0, "Valpo jam");
   int gameScreenWidth = 1920; int gameScreenHeight = 1080;
 
@@ -36,6 +37,7 @@ int main(void)
   muralla.Load("resources/data/map.data");
 
   Player player = {};
+  int previousDangeLevel = player.dangerLevel;
 
   DialogueManager dg("textochalla.data", &player.m_camera);
 
@@ -43,13 +45,52 @@ int main(void)
 
   Menu menu = Menu();
 
-  
+    //MUSIC
+  InitAudioDevice();              // Initialize audio device
+  Music music = LoadMusicStream("resources/music/ZeroDanger.wav");
+  PlayMusicStream(music);
+  float timePlayed = 0.0f;        // Time played normalized [0.0f..1.0f]
+
   while (!WindowShouldClose())
   {
     if(IsKeyPressed(KEY_P)) {if(!menu.MenuMain()) {return 0;}}
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
-    
+
+    // Update
+    //----------------------------------------------------------------------------------
+    if(player.dangerLevel != previousDangeLevel)
+    {
+        if(player.dangerLevel == 0)
+        {
+            UnloadMusicStream(music);   // Unload music stream buffers from RAM
+            music = LoadMusicStream("resources/music/ZeroDanger.wav");
+        }
+        else if(player.dangerLevel == 1)
+        {
+            UnloadMusicStream(music);   // Unload music stream buffers from RAM
+            music = LoadMusicStream("resources/music/OneDanger.wav");
+        }
+        else if(player.dangerLevel == 2)
+        {
+            UnloadMusicStream(music);   // Unload music stream buffers from RAM
+            music = LoadMusicStream("resources/music/TwoDanger.wav");
+        }
+        else if(player.dangerLevel == 3)
+        {
+            UnloadMusicStream(music);   // Unload music stream buffers from RAM
+            music = LoadMusicStream("resources/music/ThreeDanger.wav");
+        }
+    }
+    previousDangeLevel = player.dangerLevel;
+    UpdateMusicStream(music);   // Update music buffer with new stream data
+
+    // Get normalized time played for current music stream
+    timePlayed = GetMusicTimePlayed(music)/GetMusicTimeLength(music);
+
+    if (timePlayed > 1.0f) timePlayed = 1.0f;   // Make sure time played is no longer than music
+
+
     BeginMode2D(player.m_camera);
     ClearBackground(RAYWHITE);
     GM.Update();
@@ -70,5 +111,7 @@ int main(void)
                        (float)gameScreenWidth*scale, (float)gameScreenHeight*scale }, (Vector2){ 0, 0 }, 0.0f, WHITE);
     EndDrawing();
   }
+  UnloadMusicStream(music);   // Unload music stream buffers from RAM
+  CloseAudioDevice();         // Close audio device (music streaming is automatically stopped)
   CloseWindow();
 }
