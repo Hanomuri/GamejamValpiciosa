@@ -61,6 +61,10 @@ int main(void)
   DialogueManager dg("textochalla.data", &player.m_camera);
 
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
+  //InitWindow(1920, 1080, "raylib [textures] example - texture to image");
+  Image image = LoadImage("/resources/images/UI/LogoConOuroboros.png");
+  Texture2D mainMenuBackground = LoadTextureFromImage(image);
+  UnloadImage(image);
 
   Menu menu = Menu();
   MainMenu mainMenu = MainMenu();
@@ -73,8 +77,10 @@ int main(void)
 
   while (!WindowShouldClose())
   { 
+    if(mainMenu.exitFlag) {
+        if(!mainMenu.MenuMain(mainMenuBackground)) {return 0;}
+    }
     if(IsKeyPressed(KEY_P)) {if(!menu.MenuMain()) {return 0;}}
-    if(!mainMenu.MenuMain()) {return 0;}
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
 
@@ -175,7 +181,7 @@ int main(void)
     //dg.Render("jefe", 0);
     
     //ESTO AL FINAL
-    DrawRectangle(0, 0, gameScreenWidth, gameScreenHeight, (Color){ 4, 14, 42, 25*previousDangeLevel});
+    DrawRectangle(player.m_camera.offset.x, player.m_camera.offset.y, gameScreenWidth, gameScreenHeight, (Color){ 4, 14, 42, 25*previousDangeLevel});
     player.Update();
     EndMode2D();
     EndTextureMode();
