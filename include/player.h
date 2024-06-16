@@ -10,7 +10,7 @@ typedef struct Player : Entity {
   Camera2D m_camera = {0, 0, 0, 0, 0, 0};
   TileCollider collider = {"resources/data/collisionMap.data"};
   Todo todo = {};
-
+  int dangerLevel = 0;
   Player();
   void Move(float x, float y, int tX, int tY);
   void SetCamera();
