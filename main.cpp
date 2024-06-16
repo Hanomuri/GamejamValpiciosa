@@ -4,6 +4,7 @@
 #include "raylib.h"
 #include "player.h"
 #include "todo.h"
+#include "menu.h"
 
 #define MAX(a, b) ((a)>(b)? (a) : (b))
 #define MIN(a, b) ((a)<(b)? (a) : (b))
@@ -37,8 +38,11 @@ int main(void)
 
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
 
+  Menu menu = Menu();
+
   while (!WindowShouldClose())
   {
+    if(IsKeyPressed(KEY_P)) {menu.MenuMain();}
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
     

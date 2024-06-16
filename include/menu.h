@@ -1,25 +1,21 @@
 #include "raylib.h"
+#include "core.h"
 
-class menu {
+class Menu {
 private:
-    int point = 0;
-    int menuButton[4];
+    int point;
+    float y, j, k ,i;
+    const char* menuButton[4] = {"CONTINUE", "NEW GAME", "SETTINGS", "EXIT"};
+    Font font;
+    //Animation dotuncheck = {"dot_uncheck", dot, 0, 0, 0};
+    //Animation dotcheck = {"dot_check", dot, 1, 1, 0};
 public:
-    menu(/* args */);
-    ~menu();
-    void menuMovement();
+    Menu();
+    ~Menu();
+    void MenuMovement();
+    void UiEffect();
+    void MenuMain();
+    void MenuNewGame();
+    void MenuSettings();
+    void MenuExit();
 };
-
-void menu::menuMovement() {
-    if(IsKeyPressed)
-}
-
-menu::menu(/* args */)
-{
-}
-
-menu::~menu()
-{
-}
-
-
