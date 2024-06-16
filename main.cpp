@@ -6,7 +6,7 @@
 #include "player.h"
 #include "todo.h"
 #include "menu.h"
-#include "MainMenu.h"
+#include "mainMenu.h"
 
 #define MAX(a, b) ((a)>(b)? (a) : (b))
 #define MIN(a, b) ((a)<(b)? (a) : (b))
