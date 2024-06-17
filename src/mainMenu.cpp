@@ -7,18 +7,24 @@ MainMenu::MainMenu() {
 
 MainMenu::~MainMenu() {}
 
-bool MainMenu::MenuMain() { 
+bool MainMenu::MenuMain(Animation& menuBackIdle) { 
     point = 0;
     while(!WindowShouldClose()) {
         Vector2 top = {(130),(370)};
         Vector2 down = {(130),(410)};
         Vector2 right = {(180),(390)};
+
+        BeginDrawing();
+
         //ClearBackground((Color){ 4, 14, 42, 255 } );
-        mainMenuBackgroundIdle.Draw({0, 0}, 8);
+        menuBackIdle.Draw({0,0}, 8);
         MenuMovement();
         UiEffect(top, down, right);
         DrawTriangle(top, down, right, (Color){ 171, 222, 73, 255 });
-        if(IsKeyPressed(KEY_ENTER) && point == 0) {break;} //continue
+
+        EndDrawing();
+
+        if(IsKeyPressed(KEY_ENTER) && point == 0) {exitFlag = false; return true;} //continue
         if(IsKeyPressed(KEY_ENTER) && point == 1) {return false;} 
     }
 }
@@ -31,6 +37,4 @@ void MainMenu::MenuMovement() {
 void MainMenu::UiEffect(Vector2& top, Vector2& down, Vector2& right) {
     if(point == 0) {top = {(130),(370)}; down = {(130),(410)}; right = {(180),(390)};}
     if(point == 1) {top = {(130),(490)}; down = {(130),(530)}; right = {(180),(510)};}
-    if(intConfirm == 0) {top = {(360),(530)}; down = {(360),(570)}; right = {(410),(550)};}
-    if(intConfirm == 1) {top = {(1100),(530)}; down = {(1100),(570)}; right = {(1170),(550)};}
 }

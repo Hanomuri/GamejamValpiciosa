@@ -6,7 +6,7 @@
 #include "player.h"
 #include "todo.h"
 #include "menu.h"
-#include "MainMenu.h"
+#include "mainMenu.h"
 
 #define MAX(a, b) ((a)>(b)? (a) : (b))
 #define MIN(a, b) ((a)<(b)? (a) : (b))
@@ -62,6 +62,9 @@ int main(void)
 
   Font font = LoadFontEx("resources/fonts/IllusionBook-Regular.ttf", 100, NULL, 0);
 
+  SpriteSheet menuBack = {"resources/images/UI/LogoConOuroboros.png", 1, 1};
+  Animation menuBackIdle = {"menuBackIdle", menuBack, 0};
+
   Menu menu = Menu();
   MainMenu mainMenu = MainMenu();
 
@@ -73,8 +76,10 @@ int main(void)
 
   while (!WindowShouldClose())
   { 
+    if(mainMenu.exitFlag) {
+        if(!mainMenu.MenuMain(menuBackIdle)) {return 0;}
+    }
     if(IsKeyPressed(KEY_P)) {if(!menu.MenuMain()) {return 0;}}
-    //if(!mainMenu.MenuMain()) {return 0;}
     float scale = MIN((float)GetScreenWidth()/gameScreenWidth, (float)GetScreenHeight()/gameScreenHeight);
     BeginTextureMode(target);
 
@@ -101,7 +106,7 @@ int main(void)
             SeekMusicStream(music, moment);
         //collisions
         //player.collider = {"resources/data/collisionMap0.data"};
-
+        std::cout <<"pichula\n";
         }
     }
     else if(player.dangerLevel == 1)
