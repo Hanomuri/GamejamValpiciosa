@@ -10,14 +10,13 @@ MainMenu::~MainMenu() {}
 bool MainMenu::MenuMain(Animation& menuBackIdle) { 
     point = 0;
     while(!WindowShouldClose()) {
-        Vector2 top = {(130),(370)};
-        Vector2 down = {(130),(410)};
-        Vector2 right = {(180),(390)};
+        Vector2 top = {(750),(800)};
+        Vector2 down = {(750),(840)};
+        Vector2 right = {(800),(820)};
 
         BeginDrawing();
 
-        //ClearBackground((Color){ 4, 14, 42, 255 } );
-        menuBackIdle.Draw({0,0}, 8);
+        menuBackIdle.Draw({0,0}, 8.45);
         MenuMovement();
         UiEffect(top, down, right);
         DrawTriangle(top, down, right, (Color){ 171, 222, 73, 255 });
@@ -35,6 +34,6 @@ void MainMenu::MenuMovement() {
 }
 
 void MainMenu::UiEffect(Vector2& top, Vector2& down, Vector2& right) {
-    if(point == 0) {top = {(130),(370)}; down = {(130),(410)}; right = {(180),(390)};}
-    if(point == 1) {top = {(130),(490)}; down = {(130),(530)}; right = {(180),(510)};}
+    if(point == 0) {top = {(750),(800)}; down = {(750),(840)}; right = {(800),(820)};}
+    if(point == 1) {top = {(780),(940)}; down = {(780),(980)}; right = {(830),(960)};}
 }
