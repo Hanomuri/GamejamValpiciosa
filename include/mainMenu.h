@@ -1,4 +1,5 @@
-#include "raylib.h"
+#pragma once
+#include "core.h"
 
 class MainMenu {
 private:
@@ -10,6 +11,6 @@ public:
     ~MainMenu();
     void MenuMovement();
     void UiEffect(Vector2& top, Vector2& down, Vector2& right);
-    bool MenuMain(Texture2D backTexture);
+    bool MenuMain(Animation& menuBackIdle);
     bool exitFlag;
 };

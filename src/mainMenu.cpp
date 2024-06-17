@@ -7,7 +7,7 @@ MainMenu::MainMenu() {
 
 MainMenu::~MainMenu() {}
 
-bool MainMenu::MenuMain(Texture2D backTexture) { 
+bool MainMenu::MenuMain(Animation& menuBackIdle) { 
     point = 0;
     while(!WindowShouldClose()) {
         Vector2 top = {(130),(370)};
@@ -17,14 +17,14 @@ bool MainMenu::MenuMain(Texture2D backTexture) {
         BeginDrawing();
 
         //ClearBackground((Color){ 4, 14, 42, 255 } );
-        DrawTextureEx(backTexture, {20,20}, 0, 100, WHITE);
+        menuBackIdle.Draw({0,0}, 8);
         MenuMovement();
         UiEffect(top, down, right);
         DrawTriangle(top, down, right, (Color){ 171, 222, 73, 255 });
 
         EndDrawing();
 
-        if(IsKeyPressed(KEY_ENTER) && point == 0) {exitFlag = false; UnloadTexture(backTexture); return true;} //continue
+        if(IsKeyPressed(KEY_ENTER) && point == 0) {exitFlag = false; return true;} //continue
         if(IsKeyPressed(KEY_ENTER) && point == 1) {return false;} 
     }
 }
