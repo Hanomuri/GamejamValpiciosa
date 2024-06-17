@@ -8,7 +8,7 @@
 typedef struct Player : Entity {
   using Entity::ToggleCollider;
   Camera2D m_camera = {0, 0, 0, 0, 0, 0};
-  TileCollider collider = {"resources/data/collisionMap0.data"};
+  TileCollider collider = {"resources/data/0/collisionMap0.data"};
   Todo todo = {};
   int dangerLevel = 0;
   bool hasPills = false;
