@@ -13,6 +13,29 @@ typedef struct Player : Entity {
   int dangerLevel = 0;
   bool hasPills = false;
 
+  SpriteSheet sprite = {"resources/images/Entities/Protagonista.png", 10, 1};
+  Animation rightIdle = {"rightIdle", sprite, 0, 2, 2.0f};
+  Animation rightMove = {"rightMove", sprite, 1, 2, 2.0f};
+  Animation leftIdle = {"leftIdle", sprite, 3, 2, 2.0f};
+  Animation leftMove = {"leftMove", sprite, 4, 2, 2.0f};
+  Animation upIdle = {"upIdle", sprite, 6, 1, 2.0f};
+  Animation upMove = {"upMove", sprite, 7, 4, 2.0f};
+
+  Animation* animationsArray[6] = {&rightIdle,
+                                  &rightMove,
+                                  &leftIdle,
+                                  &leftMove,
+                                  &upIdle,
+                                  &upMove};
+  Animator m_animator = {*animationsArray, 6};
+
+  unsigned int rIdleN[6] = {0, 1, 2, 3, 4, 5};       //0
+  unsigned int rMoveN[6] = {0, 1, 2, 3, 4, 5};      //1
+  unsigned int lIdleN[6] = {0, 1, 2, 3, 4, 5};          //2
+  unsigned int lMoveN[6] = {0, 1, 2, 3, 4, 5};          //3
+  unsigned int uIdleN[6] = {0, 1, 2, 3, 4, 5};          //4
+  unsigned int uMoveN[6] = {0, 1, 2, 3, 4, 5};       //5
+
   void TogglePills() {hasPills = !hasPills;}
   bool hasTask1 = false;
   bool hasTask2 = false;
