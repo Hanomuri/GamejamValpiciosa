@@ -175,7 +175,7 @@ int main(void)
     //dg.Render("jefe", 0);
     
     //ESTO AL FINAL
-    DrawRectangle(0, 0, gameScreenWidth, gameScreenHeight, (Color){ 4, 14, 42, 25*previousDangeLevel});
+    DrawRectangle(player.m_camera.offset.x, player.m_camera.offset.y, gameScreenWidth, gameScreenHeight, (Color){ 4, 14, 42, 25*previousDangeLevel});
     player.Update();
     EndMode2D();
     EndTextureMode();
