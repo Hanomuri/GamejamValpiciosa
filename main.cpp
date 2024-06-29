@@ -23,7 +23,6 @@ int main(void)
   SetTextureFilter(target.texture, TEXTURE_FILTER_TRILINEAR);
   
   SetWindowIcon(LoadImage("resources/images/UI/icono.png"));
-  SetWindowTitle("Pico pal q lee :p");
 
   SpriteSheet maceta = {"resources/images/macetaV1.png", 1, 1};
   Animation macetaIdle = {"macetaIdle", maceta, 0};
